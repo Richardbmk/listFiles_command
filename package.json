@@ -1,0 +1,26 @@
+{
+  "name": "list_directory_files",
+  "version": "1.0.0",
+  "description": "creation of you own personal command to list all the files in a current directory.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Richardbmk/listFiles_command.git"
+  },
+  "keywords": [
+    "node",
+    "command",
+    "linux",
+    "ls",
+    "js"
+  ],
+  "author": "Richard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Richardbmk/listFiles_command/issues"
+  },
+  "homepage": "https://github.com/Richardbmk/listFiles_command#readme"
+}
