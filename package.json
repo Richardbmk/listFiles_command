@@ -19,6 +19,9 @@
   ],
   "author": "Richard",
   "license": "ISC",
+  "bin": {
+    "lsf": "index.js"
+  },
   "bugs": {
     "url": "https://github.com/Richardbmk/listFiles_command/issues"
   },

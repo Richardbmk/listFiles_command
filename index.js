@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+
 const fs = require('fs');
 
 fs.readdir(process.cwd(), (err, filename) => {
@@ -6,4 +9,4 @@ fs.readdir(process.cwd(), (err, filename) => {
     }
 
     console.log(filename);
-})
+});
