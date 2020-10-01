@@ -2,39 +2,39 @@
 
 
 const fs = require('fs');
+const util = require('util');
 
-fs.readdir(process.cwd(), (err, filenames) => {
+// Method #2
+/* const lstat = util.promisify(fs.lstat); */
+
+// Method #3
+// const { lstat } = fs.promises;
+
+fs.readdir(process.cwd(), async (err, filenames) => {
     if (err) {
         console.log(err);
     }
 
-    // console.log(filenames);
+    for (let filename of filenames) {
+        try {
+            const stats = await lstat(filename);
+            console.log(filename, stats.isFile());
 
-    const allStats = Array(filenames.length).fill(null);
-    // console.log(allStats);
-
-    // BAD CODE
-    for (let filename of filenames){
-        const index = filenames.indexOf(filename);
-        
-        fs.lstat(filename, (err, stats) => {
-            if(err){
-                console.log(err);
-            }
-
-            // console.log(filename, stats.isFile());
-            allStats[index] = stats;
-
-            const ready = allStats.every((result) => {
-                return result;
-            });
-
-            if(ready) {
-                allStats.forEach((stats, index) => {
-                    console.log(filenames[index], stats.isFile());
-                });
-            }
-        });
+        } catch(err) {
+            console.log(err);
+        }
     }
-    // END OF BAD CODE
 });
+
+// Method #1
+const lstat = (filename) => {
+    return new Promise((reject, resolve) => {
+        fs.lstat(filename, (err, stats) => {
+            if(err) {
+                reject(err);
+            }
+
+            resolve(stats);
+        })
+    })
+}
