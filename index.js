@@ -3,30 +3,46 @@
 
 const fs = require('fs');
 const util = require('util');
+const chalk = require('chalk');
+const path = require('path');
+
+// console.log(chalk.blue('RIchard'));
 
 // Method #2
-/* const lstat = util.promisify(fs.lstat); */
+const lstat = util.promisify(fs.lstat);
+
+// console.log(process.argv);
+const targetDirectory = process.argv[2] || process.cwd();
 
 // Method #3
-// const { lstat } = fs.promises;
+/* const { lstat } = fs.promises; */
 
-fs.readdir(process.cwd(), async (err, filenames) => {
+fs.readdir(targetDirectory, async (err, filenames) => {
     if (err) {
         console.log(err);
     }
 
-    for (let filename of filenames) {
-        try {
-            const stats = await lstat(filename);
-            console.log(filename, stats.isFile());
+    const allPromises = filenames.map((filename) => {
+        return lstat(path.join(targetDirectory, filename));
+    });
 
-        } catch(err) {
-            console.log(err);
+    const allStat = await Promise.all(allPromises);
+
+    for (let stat of allStat) {
+        const index = allStat.indexOf(stat);
+        if(stat.isFile()) {
+            console.log(filenames[index]);
+        } else {
+            console.log(chalk.blue(filenames[index]));
         }
+        // console.log(filenames[index], stat.isFile());
+        
     }
 });
 
 // Method #1
+
+/* 
 const lstat = (filename) => {
     return new Promise((reject, resolve) => {
         fs.lstat(filename, (err, stats) => {
@@ -35,6 +51,7 @@ const lstat = (filename) => {
             }
 
             resolve(stats);
-        })
-    })
+        });
+    });
 }
+ */

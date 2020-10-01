@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/Richardbmk/listFiles_command/issues"
   },
-  "homepage": "https://github.com/Richardbmk/listFiles_command#readme"
+  "homepage": "https://github.com/Richardbmk/listFiles_command#readme",
+  "dependencies": {
+    "chalk": "^4.1.0"
+  }
 }

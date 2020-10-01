@@ -8,15 +8,12 @@ Instead of typing the command line "ls" to list all the files in the current dir
 In this project I choose to use "lsf" instead of ls to list files.
 
 
-##### In this project I learn about:
-* To use the library Matter.js
-* Generate a maze randomly
-* Shuffle algorithm
+##### In this project use:
+* library chalk to color the output in the cmd
+* loops, Promises, async and await
+* nodejs
 * forEach method
-* Refactoring the code to generate any type of maze
 
 
-Check the simple app clicking [here](https://richardbmk.github.io/mazegame/).
-
-
-![](maze.JPG)
+![](lsf_1.JPG)
+![](lsf_2.JPG)
